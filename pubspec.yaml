@@ -1,0 +1,59 @@
+name: eventify
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  #backend as a service
+  supabase_flutter: ^2.8.0
+  #state management
+  flutter_bloc: ^8.1.6
+  #functional programming
+  fpdart: ^1.1.1
+  #dependency injection
+  get_it: ^8.0.2
+  #routing
+  go_router: ^14.4.1
+  #animation
+  flutter_animate: ^4.5.0
+  #images and icons
+  flutter_svg: ^2.0.14
+  cupertino_icons: ^1.0.8
+  #ui components
+  segmented_button_slide: ^2.0.0
+  #others
+  flutter_dotenv: ^5.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - .env
+    - assets/images/
+    - assets/icons/
+    - assets/animations/
+    - assets/fonts/
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/inter/Inter-Regular.ttf
+          weight: 400
+    - family: SchibstedGrotesk
+      fonts:
+        - asset: assets/fonts/schibstedGrotesk/SchibstedGrotesk-Regular.ttf
+          weight: 400
+    - family: Merriweather
+      fonts:
+        - asset: assets/fonts/merriweather/Merriweather-Regular.ttf
+          weight: 400
