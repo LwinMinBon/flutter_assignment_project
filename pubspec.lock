@@ -129,6 +129,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.1"
+  fluid_dialog:
+    dependency: "direct main"
+    description:
+      name: fluid_dialog
+      sha256: "180c8be98efecc7257e1ee337fef9882256eb2b597dc3e0d41db3392b1ccea81"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -344,6 +352,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  password_strength:
+    dependency: "direct main"
+    description:
+      name: password_strength
+      sha256: "0e51e3d864e37873a1347e658147f88b66e141ee36c58e19828dc5637961e1ce"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   path:
     dependency: transitive
     description:

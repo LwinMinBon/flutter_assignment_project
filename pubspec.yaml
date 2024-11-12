@@ -26,7 +26,9 @@ dependencies:
   cupertino_icons: ^1.0.8
   #ui components
   segmented_button_slide: ^2.0.0
-  #others
+  fluid_dialog: ^2.0.0
+  #utilities
+  password_strength: ^0.2.0
   flutter_dotenv: ^5.2.1
 
 dev_dependencies:

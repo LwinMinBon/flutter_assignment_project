@@ -1,9 +1,10 @@
-import 'package:eventify/core/theme/app_font_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:segmented_button_slide/segmented_button_slide.dart';
+
+import '../../../../core/theme/app_font_styles.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -105,7 +106,7 @@ class _WelcomePageState extends State<WelcomePage> {
               .slideY(),
             const Spacer(),
             Text(
-                "@2024 Lwin Min Bhone",
+                "@2024 Eventify",
               style: AppFontStyles.footnoteSemibold.copyWith(
                 color: Theme.of(context).colorScheme.secondary
               ),

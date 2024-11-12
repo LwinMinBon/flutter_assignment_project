@@ -1,13 +1,15 @@
-import 'package:eventify/core/error/failure.dart';
-import 'package:eventify/core/usecase/Usecase.dart';
-import 'package:eventify/features/auth/domain/repository/auth_repository.dart';
-import 'package:fpdart/src/either.dart';
+import 'package:fpdart/fpdart.dart';
 
-class UserSignUp implements UseCase<String, UserSignUpParams> {
+import '../../../../core/error/failure.dart';
+import '../../../../core/usecase/usecase.dart';
+import '../entity/user_entity.dart';
+import '../repository/auth_repository.dart';
+
+class UserSignUp implements UseCase<UserEntity, UserSignUpParams> {
   final AuthRepository authRepository;
   UserSignUp({required this.authRepository});
   @override
-  Future<Either<Failure, String>> call(UserSignUpParams params) async {
+  Future<Either<Failure, UserEntity>> call(UserSignUpParams params) async {
     return await authRepository.signUpWithEmailAndPassword(
         email: params.email,
         password: params.password,

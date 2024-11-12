@@ -1,11 +1,17 @@
-import 'package:eventify/features/auth/data/data_sources/auth_remote_data_source.dart';
-import 'package:eventify/features/auth/data/repository/auth_repository_impl.dart';
-import 'package:eventify/features/auth/domain/repository/auth_repository.dart';
-import 'package:eventify/features/auth/domain/usecases/user_sign_up.dart';
-import 'package:eventify/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:get_it/get_it.dart';
+import 'package:eventify/features/auth/domain/usecase/user_sign_out.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../core/common/cubits/app_user_cubit.dart';
+import '../features/auth/data/data_source/auth_remote_data_source.dart';
+import '../features/auth/data/data_source/auth_remote_data_source_impl.dart';
+import '../features/auth/data/repository/auth_repository_impl.dart';
+import '../features/auth/domain/repository/auth_repository.dart';
+import '../features/auth/domain/usecase/current_user_fetch.dart';
+import '../features/auth/domain/usecase/user_sign_in.dart';
+import '../features/auth/domain/usecase/user_sign_up.dart';
+import '../features/auth/presentation/bloc/auth_bloc.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -14,36 +20,66 @@ Future<void> initDependencies() async {
     url: dotenv.env["projectUrl"]!,
     anonKey: dotenv.env["anonKey"]!,
   );
+  _initSupabaseDependencies(supabase.client);
+  _initCoreDependencies();
+  _initAuthDependencies();
+  _initBlocDependencies();
+}
 
+void _initSupabaseDependencies(SupabaseClient client) {
   getIt.registerLazySingleton<SupabaseClient>(
-    () => supabase.client,
-  );
-  _initAuth();
-  _initBloc();
-}
-
-void _initAuth() {
-  getIt.registerFactory<AuthRemoteDataSource>(
-    () => AuthRemoteDataSourceImpl(
-      supabaseClient: getIt(),
-    ),
-  );
-  getIt.registerFactory<AuthRepository>(
-    () => AuthRepositoryImpl(
-      authRemoteDataSource: getIt(),
-    ),
-  );
-  getIt.registerFactory<UserSignUp>(
-    () => UserSignUp(
-      authRepository: getIt(),
-    ),
+    () => client,
   );
 }
 
-void _initBloc() {
+void _initCoreDependencies() {
+  getIt.registerLazySingleton<AppUserCubit>(
+    () => AppUserCubit(),
+  );
+}
+
+void _initAuthDependencies() {
+  getIt
+    ..registerFactory<AuthRemoteDataSource>(
+      () => AuthRemoteDataSourceImpl(
+        supabaseClient: getIt(),
+      ),
+    )
+    ..registerFactory<AuthRepository>(
+      () => AuthRepositoryImpl(
+        authRemoteDataSource: getIt(),
+      ),
+    )
+    ..registerFactory<UserSignUp>(
+      () => UserSignUp(
+        authRepository: getIt(),
+      ),
+    )
+    ..registerFactory<UserSignIn>(
+      () => UserSignIn(
+        authRepository: getIt(),
+      ),
+    )
+    ..registerFactory<CurrentUserFetch>(
+      () => CurrentUserFetch(
+        authRepository: getIt(),
+      ),
+    )
+    ..registerFactory(
+      () => UserSignOut(
+        authRepository: getIt(),
+      ),
+    );
+}
+
+void _initBlocDependencies() {
   getIt.registerLazySingleton<AuthBloc>(
     () => AuthBloc(
       userSignUp: getIt(),
+      userSignIn: getIt(),
+      currentUserFetch: getIt(),
+      appUserCubit: getIt(),
+      userSignOut: getIt(),
     ),
   );
 }
