@@ -27,7 +27,13 @@ dependencies:
   #ui components
   segmented_button_slide: ^2.0.0
   fluid_dialog: ^2.0.0
+  #map
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  #image picker
+  image_picker: ^1.1.2
   #utilities
+  uuid: ^4.5.1
   password_strength: ^0.2.0
   flutter_dotenv: ^5.2.1
 

@@ -1,10 +1,11 @@
-import 'package:eventify/core/common/utils/show_snackbar.dart';
-import 'package:eventify/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/common/utils/show_dialog.dart';
+import '../../../../core/common/utils/show_snackbar.dart';
 import '../../../../core/theme/app_font_styles.dart';
+import '../../../auth/presentation/bloc/auth_bloc.dart';
 import '../widgets/options_dialog.dart';
 
 class HomePage extends StatelessWidget {
@@ -52,7 +53,9 @@ class HomePage extends StatelessWidget {
           bottom: 20,
         ),
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            context.pushNamed("/create_event");
+          },
           foregroundColor: Theme.of(context).colorScheme.onTertiary,
           backgroundColor: Theme.of(context).colorScheme.tertiary,
           child: const Icon(

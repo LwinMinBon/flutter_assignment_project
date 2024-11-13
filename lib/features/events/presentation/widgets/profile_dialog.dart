@@ -1,9 +1,9 @@
-import 'package:eventify/core/common/cubits/app_user_cubit.dart';
-import 'package:eventify/core/common/widgets/loading_indicator.dart';
 import 'package:fluid_dialog/fluid_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/common/cubits/app_user_cubit.dart';
+import '../../../../core/common/widgets/loading_indicator.dart';
 import '../../../../core/theme/app_font_styles.dart';
 
 class ProfileDialog extends StatelessWidget {

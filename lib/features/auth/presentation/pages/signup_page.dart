@@ -129,7 +129,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                               .errorContainer)),
                                   contentPadding: const EdgeInsets.all(20)),
                               validator: (value) {
-                                if (value!.isEmpty) {
+                                if (value!.trim().isEmpty) {
                                   return "Email address is missing.";
                                 } else if (value.length < 10) {
                                   return "Email address can't be less than 10 characters long.";
@@ -188,7 +188,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                               .errorContainer)),
                                   contentPadding: const EdgeInsets.all(20)),
                               validator: (value) {
-                                if (value!.isEmpty) {
+                                if (value!.trim().isEmpty) {
                                   return "Password is missing.";
                                 } else {
                                   double strength = estimatePasswordStrength(value);
@@ -248,7 +248,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                               .errorContainer)),
                                   contentPadding: const EdgeInsets.all(20)),
                               validator: (value) {
-                                if (value!.isEmpty) {
+                                if (value!.trim().isEmpty) {
                                   return "Username is missing.";
                                 } else if (value.length < 3) {
                                   return "Username can't be less than 3 characters long.";
@@ -306,7 +306,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 contentPadding: const EdgeInsets.all(20),
                               ),
                               validator: (value) {
-                                if (value!.isEmpty) {
+                                if (value!.trim().isEmpty) {
                                   return "Phone Number is missing.";
                                 } else if (value.length < 8) {
                                   return "Phone number can't be less than 8 numbers long.";

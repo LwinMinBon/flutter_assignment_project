@@ -125,7 +125,7 @@ class _SignupPageState extends State<SignInPage> {
                                 contentPadding: const EdgeInsets.all(20),
                               ),
                               validator: (value) {
-                                if (value!.isEmpty) {
+                                if (value!.trim().isEmpty) {
                                   return "Email Address is missing.";
                                 } else {
                                   return null;
@@ -183,7 +183,7 @@ class _SignupPageState extends State<SignInPage> {
                                 contentPadding: const EdgeInsets.all(20),
                               ),
                               validator: (value) {
-                                if (value!.isEmpty) {
+                                if (value!.trim().isEmpty) {
                                   return "Password is missing.";
                                 } else {
                                   return null;

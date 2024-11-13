@@ -1,4 +1,3 @@
-import 'package:eventify/features/auth/domain/usecase/user_sign_out.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -10,8 +9,15 @@ import '../features/auth/data/repository/auth_repository_impl.dart';
 import '../features/auth/domain/repository/auth_repository.dart';
 import '../features/auth/domain/usecase/current_user_fetch.dart';
 import '../features/auth/domain/usecase/user_sign_in.dart';
+import '../features/auth/domain/usecase/user_sign_out.dart';
 import '../features/auth/domain/usecase/user_sign_up.dart';
 import '../features/auth/presentation/bloc/auth_bloc.dart';
+import '../features/events/data/data_source/event_remote_data_source.dart';
+import '../features/events/data/data_source/event_remote_data_source_impl.dart';
+import '../features/events/data/repository/event_repository_impl.dart';
+import '../features/events/domain/repository/event_repository.dart';
+import '../features/events/domain/usecase/create_event.dart';
+import '../features/events/presentation/bloc/event_bloc.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -23,6 +29,7 @@ Future<void> initDependencies() async {
   _initSupabaseDependencies(supabase.client);
   _initCoreDependencies();
   _initAuthDependencies();
+  _initEventDependencies();
   _initBlocDependencies();
 }
 
@@ -72,6 +79,25 @@ void _initAuthDependencies() {
     );
 }
 
+void _initEventDependencies() {
+  getIt
+    ..registerFactory<EventRemoteDataSource>(
+      () => EventRemoteDataSourceImpl(
+        supabaseClient: getIt(),
+      ),
+    )
+    ..registerFactory<EventRepository>(
+      () => EventRepositoryImpl(
+        eventRemoteDataSource: getIt(),
+      ),
+    )
+    ..registerFactory<CreateEvent>(
+      () => CreateEvent(
+        eventRepository: getIt(),
+      ),
+    );
+}
+
 void _initBlocDependencies() {
   getIt.registerLazySingleton<AuthBloc>(
     () => AuthBloc(
@@ -80,6 +106,11 @@ void _initBlocDependencies() {
       currentUserFetch: getIt(),
       appUserCubit: getIt(),
       userSignOut: getIt(),
+    ),
+  );
+  getIt.registerLazySingleton<EventBloc>(
+    () => EventBloc(
+      createEvent: getIt(),
     ),
   );
 }

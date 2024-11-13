@@ -1,9 +1,9 @@
-import 'package:eventify/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:fluid_dialog/fluid_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theme/app_font_styles.dart';
+import '../../../auth/presentation/bloc/auth_bloc.dart';
 import 'profile_dialog.dart';
 
 class OptionsDialog extends StatelessWidget {
