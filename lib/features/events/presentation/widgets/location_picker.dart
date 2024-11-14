@@ -15,7 +15,7 @@ class LocationPicker extends StatefulWidget {
     required this.latitude,
     required this.longitude,
     required this.onCoordinatesChanged,
-    this.zoomLevel = 10.0,
+    this.zoomLevel = 12.0,
     this.displayOnly = true,
     this.markerColor = Colors.black,
   });

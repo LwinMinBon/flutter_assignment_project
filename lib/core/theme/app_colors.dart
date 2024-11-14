@@ -21,5 +21,5 @@ class DarkThemeColors {
   static const brandColor = Color(0xff89C7FF);
   static const onBrandColor = Color(0xff000000);
   static const tertiaryContainerColor = Color(0xff27313E);
-  static const surfaceContainerColor = Color(0xff2A2A2A);
+  static const surfaceContainerColor = Color(0xff1a1a1a);
 }

@@ -28,3 +28,19 @@ class EventCreate extends EventEvent {
     required this.time,
   });
 }
+
+class EventGet extends EventEvent {
+  final String eventId;
+
+  EventGet({
+    required this.eventId,
+  });
+}
+
+class EventRemove extends EventEvent {
+  final String eventId;
+
+  EventRemove({
+    required this.eventId,
+  });
+}

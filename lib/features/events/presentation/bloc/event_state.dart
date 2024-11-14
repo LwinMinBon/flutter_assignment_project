@@ -8,10 +8,10 @@ final class EventInitial extends EventState {}
 final class EventLoading extends EventState {}
 
 final class EventFailure extends EventState {
-  final String message;
+  final String errorMessage;
 
   EventFailure({
-    required this.message,
+    required this.errorMessage,
   });
 }
 
@@ -22,3 +22,13 @@ final class EventSuccess extends EventState {
     required this.eventEntity,
   });
 }
+
+final class EventRemoveFailure extends EventState {
+  final String errorMessage;
+
+  EventRemoveFailure({
+    required this.errorMessage,
+  });
+}
+
+final class EventRemoveSuccess extends EventState {}

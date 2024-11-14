@@ -6,6 +6,7 @@ import 'core/common/cubits/app_user_cubit.dart';
 import 'di/init_dependencies.dart';
 import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/events/presentation/bloc/event_bloc.dart';
+import 'features/events/presentation/bloc/events_bloc.dart';
 import 'main_app.dart';
 
 void main() async {
@@ -23,6 +24,9 @@ void main() async {
         ),
         BlocProvider(
           create: (context) => getIt<EventBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<EventsBloc>(),
         ),
       ],
       child: const MainMaterialApp(),

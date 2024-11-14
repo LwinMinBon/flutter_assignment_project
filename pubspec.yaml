@@ -27,6 +27,7 @@ dependencies:
   #ui components
   segmented_button_slide: ^2.0.0
   fluid_dialog: ^2.0.0
+  liquid_pull_to_refresh: ^3.0.1
   #map
   flutter_map: ^7.0.2
   latlong2: ^0.9.1

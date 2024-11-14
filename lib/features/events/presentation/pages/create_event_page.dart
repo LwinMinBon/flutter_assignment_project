@@ -7,9 +7,10 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/common/cubits/app_user_cubit.dart';
 import '../../../../core/common/utils/pick_image_file_from_gallery.dart';
 import '../../../../core/common/utils/show_snackbar.dart';
-import '../../../../core/theme/app_font_styles.dart';
 import '../../../../core/common/widgets/loading_indicator.dart';
+import '../../../../core/theme/app_font_styles.dart';
 import '../bloc/event_bloc.dart';
+import '../bloc/events_bloc.dart';
 import '../widgets/location_picker.dart';
 
 class CreateEventPage extends StatefulWidget {
@@ -114,6 +115,10 @@ class _CreateEventPageState extends State<CreateEventPage> {
     }
   }
 
+  void getAllEvents() {
+    context.read<EventsBloc>().add(EventsGetAll());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,12 +147,13 @@ class _CreateEventPageState extends State<CreateEventPage> {
         child: BlocConsumer<EventBloc, EventState>(
           listener: (context, state) {
             if (state is EventFailure) {
-              showSnackBar(context, state.message);
+              showSnackBar(context, state.errorMessage);
             }
             if (state is EventSuccess) {
               showSnackBar(context,
                   "Successfully created an event on ${state.eventEntity.date}.");
-              context.pushReplacementNamed("/home");
+              context.pop();
+              getAllEvents();
             }
           },
           builder: (context, state) {
@@ -174,7 +180,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                         onTap: pickImage,
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          height: 200,
+                          height: 240,
                           decoration: BoxDecoration(
                             color:
                                 Theme.of(context).colorScheme.tertiaryContainer,
@@ -234,7 +240,6 @@ class _CreateEventPageState extends State<CreateEventPage> {
                           "Educational",
                           "Sports",
                           "Charity",
-                          "Virtual",
                         ]
                             .map(
                               (eventTopic) => Padding(
@@ -529,7 +534,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                           ),
                           Container(
                             width: MediaQuery.of(context).size.width,
-                            height: 400,
+                            height: 240,
                             alignment: Alignment.center,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20.0),
@@ -542,7 +547,6 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                     locationLongitude = longitude;
                                   });
                                 },
-                                zoomLevel: 12,
                                 displayOnly: false,
                                 markerColor:
                                     Theme.of(context).colorScheme.tertiary,

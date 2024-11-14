@@ -17,7 +17,11 @@ import '../features/events/data/data_source/event_remote_data_source_impl.dart';
 import '../features/events/data/repository/event_repository_impl.dart';
 import '../features/events/domain/repository/event_repository.dart';
 import '../features/events/domain/usecase/create_event.dart';
+import '../features/events/domain/usecase/get_all_events.dart';
+import '../features/events/domain/usecase/get_event.dart';
+import '../features/events/domain/usecase/remove_event.dart';
 import '../features/events/presentation/bloc/event_bloc.dart';
+import '../features/events/presentation/bloc/events_bloc.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -95,22 +99,45 @@ void _initEventDependencies() {
       () => CreateEvent(
         eventRepository: getIt(),
       ),
+    )
+    ..registerFactory<GetAllEvents>(
+      () => GetAllEvents(
+        eventRepository: getIt(),
+      ),
+    )
+    ..registerFactory<GetEvent>(
+      () => GetEvent(
+        eventRepository: getIt(),
+      ),
+    )
+    ..registerFactory<RemoveEvent>(
+      () => RemoveEvent(
+        eventRepository: getIt(),
+      ),
     );
 }
 
 void _initBlocDependencies() {
-  getIt.registerLazySingleton<AuthBloc>(
-    () => AuthBloc(
-      userSignUp: getIt(),
-      userSignIn: getIt(),
-      currentUserFetch: getIt(),
-      appUserCubit: getIt(),
-      userSignOut: getIt(),
-    ),
-  );
-  getIt.registerLazySingleton<EventBloc>(
-    () => EventBloc(
-      createEvent: getIt(),
-    ),
-  );
+  getIt
+    ..registerLazySingleton<AuthBloc>(
+      () => AuthBloc(
+        userSignUp: getIt(),
+        userSignIn: getIt(),
+        currentUserFetch: getIt(),
+        appUserCubit: getIt(),
+        userSignOut: getIt(),
+      ),
+    )
+    ..registerLazySingleton<EventBloc>(
+      () => EventBloc(
+        createEvent: getIt(),
+        getEvent: getIt(),
+        removeEvent: getIt(),
+      ),
+    )
+    ..registerLazySingleton<EventsBloc>(
+      () => EventsBloc(
+        getAllEvents: getIt(),
+      ),
+    );
 }

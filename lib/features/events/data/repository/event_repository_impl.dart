@@ -47,8 +47,40 @@ class EventRepositoryImpl implements EventRepository {
       eventModel = eventModel.copyWith(
         imageUrl: imageUrl
       );
-      final eventModelResponse = await eventRemoteDataSource.createEvent(eventModel);
-      return right(EventEntity.fromModel(eventModelResponse));
+      final eventModelReturned = await eventRemoteDataSource.createEvent(eventModel);
+      final eventEntity = EventEntity.fromModel(eventModelReturned);
+      return right(eventEntity);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<EventEntity>>> getAllEvents() async {
+    try {
+      final eventModels = await eventRemoteDataSource.getAllEvents();
+      final eventEntities = eventModels.map((model) => EventEntity.fromModel(model)).toList();
+      return right(eventEntities);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, EventEntity>> getEvent(String id) async {
+    try {
+      final eventEntity = await eventRemoteDataSource.getEvent(id);
+      return right(eventEntity);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> removeEvent(String id) async {
+    try {
+      await eventRemoteDataSource.removeEvent(id);
+      return right(unit);
     } on ServerException catch (e) {
       return left(Failure(e.message));
     }

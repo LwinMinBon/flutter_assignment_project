@@ -14,6 +14,9 @@ class EventModel extends EventEntity {
     required super.coordinates,
     required super.date,
     required super.time,
+    super.posterEmail,
+    super.posterUsername,
+    super.posterPhoneNumber,
   });
 
   Map<String, dynamic> toJson() {
@@ -63,6 +66,9 @@ class EventModel extends EventEntity {
     List<String>? coordinates,
     String? date,
     String? time,
+    String? posterEmail,
+    String? posterUsername,
+    String? posterPhoneNumber,
   }) {
     return EventModel(
       id: id ?? this.id,
@@ -77,6 +83,9 @@ class EventModel extends EventEntity {
       coordinates: coordinates ?? this.coordinates,
       date: date ?? this.date,
       time: time ?? this.time,
+      posterEmail: posterEmail,
+      posterUsername: posterUsername,
+      posterPhoneNumber: posterPhoneNumber,
     );
   }
 }

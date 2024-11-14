@@ -5,6 +5,7 @@ import '../features/auth/presentation/pages/signin_page.dart';
 import '../features/auth/presentation/pages/signup_page.dart';
 import '../features/auth/presentation/pages/welcome_page.dart';
 import '../features/events/presentation/pages/create_event_page.dart';
+import '../features/events/presentation/pages/event_details_page.dart';
 import '../features/events/presentation/pages/home_page.dart';
 
 GoRouter getRouter(String initialRoute) {
@@ -74,6 +75,14 @@ GoRouter getRouter(String initialRoute) {
         path: "/create_event",
         builder: (context, state) {
           return const CreateEventPage();
+        },
+      ),
+      GoRoute(
+        name: "/event_details",
+        path: "/event_details/:event_id",
+        builder: (context, state) {
+          final String eventId = state.pathParameters["event_id"]!;
+          return EventDetailsPage(eventId: eventId);
         },
       ),
     ],

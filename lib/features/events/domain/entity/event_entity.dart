@@ -13,6 +13,9 @@ class EventEntity {
   final List<String> coordinates;
   final String date;
   final String time;
+  final String? posterEmail;
+  final String? posterUsername;
+  final String? posterPhoneNumber;
 
   EventEntity({
     required this.id,
@@ -27,6 +30,9 @@ class EventEntity {
     required this.coordinates,
     required this.date,
     required this.time,
+    this.posterEmail,
+    this.posterUsername,
+    this.posterPhoneNumber,
   });
 
   factory EventEntity.fromModel(EventModel model) {
@@ -43,6 +49,9 @@ class EventEntity {
       coordinates: model.coordinates,
       date: model.date,
       time: model.time,
+      posterEmail: model.posterEmail,
+      posterUsername: model.posterUsername,
+      posterPhoneNumber: model.posterPhoneNumber
     );
   }
 }

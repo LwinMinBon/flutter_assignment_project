@@ -18,4 +18,7 @@ abstract interface class EventRepository {
     required String date,
     required String time,
   });
+  Future<Either<Failure, List<EventEntity>>> getAllEvents();
+  Future<Either<Failure, EventEntity>> getEvent(String id);
+  Future<Either<Failure, Unit>> removeEvent(String id);
 }
