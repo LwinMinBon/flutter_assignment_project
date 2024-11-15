@@ -22,13 +22,3 @@ final class EventSuccess extends EventState {
     required this.eventEntity,
   });
 }
-
-final class EventRemoveFailure extends EventState {
-  final String errorMessage;
-
-  EventRemoveFailure({
-    required this.errorMessage,
-  });
-}
-
-final class EventRemoveSuccess extends EventState {}

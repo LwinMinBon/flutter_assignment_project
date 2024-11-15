@@ -85,4 +85,15 @@ class EventRepositoryImpl implements EventRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> updateEvent(EventEntity eventEntity) async {
+    try {
+      EventModel eventModel = EventModel.fromEntity(eventEntity);
+      await eventRemoteDataSource.updateEvent(eventModel);
+      return right(unit);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
 }

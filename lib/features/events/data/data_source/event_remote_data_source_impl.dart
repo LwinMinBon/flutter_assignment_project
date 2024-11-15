@@ -83,4 +83,15 @@ class EventRemoteDataSourceImpl implements EventRemoteDataSource {
     }
   }
 
+  @override
+  Future<void> updateEvent(EventModel eventModel) async {
+    try {
+      await supabaseClient.from("events").update(eventModel.toJson()).eq("id", eventModel.id);
+    } on PostgrestException catch (e) {
+      throw ServerException(message: e.message);
+    } catch (e) {
+      throw ServerException(message: e.toString());
+    }
+  }
+
 }

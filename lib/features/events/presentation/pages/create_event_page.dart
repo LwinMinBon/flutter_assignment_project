@@ -9,8 +9,8 @@ import '../../../../core/common/utils/pick_image_file_from_gallery.dart';
 import '../../../../core/common/utils/show_snackbar.dart';
 import '../../../../core/common/widgets/loading_indicator.dart';
 import '../../../../core/theme/app_font_styles.dart';
-import '../bloc/event_bloc.dart';
-import '../bloc/events_bloc.dart';
+import '../bloc/event_bloc/event_bloc.dart';
+import '../bloc/events_bloc/events_bloc.dart';
 import '../widgets/location_picker.dart';
 
 class CreateEventPage extends StatefulWidget {
@@ -35,6 +35,21 @@ class _CreateEventPageState extends State<CreateEventPage> {
   final timeTextEditingController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    dateTextEditingController.text = DateTime.now().toString().split(" ")[0];
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (timeTextEditingController.text.isEmpty) {
+      timeTextEditingController.text = TimeOfDay.now().format(context);
+    }
+  }
+
+
+  @override
   void dispose() {
     nameTextEditingController.dispose();
     descriptionTextEditingController.dispose();
@@ -57,7 +72,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
   Future<void> selectDate() async {
     DateTime? selectedDateTime = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: DateTime.parse(dateTextEditingController.text),
       firstDate: DateTime.now(),
       lastDate: DateTime(2100),
     );

@@ -88,4 +88,24 @@ class EventModel extends EventEntity {
       posterPhoneNumber: posterPhoneNumber,
     );
   }
+
+  factory EventModel.fromEntity(EventEntity model) {
+    return EventModel(
+        id: model.id,
+        updatedAt: model.updatedAt,
+        userId: model.userId,
+        name: model.name,
+        description: model.description,
+        imageUrl: model.imageUrl,
+        topics: model.topics,
+        location: model.location,
+        venueName: model.venueName,
+        coordinates: model.coordinates,
+        date: model.date,
+        time: model.time,
+        posterEmail: model.posterEmail,
+        posterUsername: model.posterUsername,
+        posterPhoneNumber: model.posterPhoneNumber
+    );
+  }
 }

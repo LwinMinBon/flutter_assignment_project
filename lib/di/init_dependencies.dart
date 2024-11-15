@@ -20,8 +20,11 @@ import '../features/events/domain/usecase/create_event.dart';
 import '../features/events/domain/usecase/get_all_events.dart';
 import '../features/events/domain/usecase/get_event.dart';
 import '../features/events/domain/usecase/remove_event.dart';
-import '../features/events/presentation/bloc/event_bloc.dart';
-import '../features/events/presentation/bloc/events_bloc.dart';
+import '../features/events/domain/usecase/update_event.dart';
+import '../features/events/presentation/bloc/event_bloc/event_bloc.dart';
+import '../features/events/presentation/bloc/event_edition_bloc/event_edition_bloc.dart';
+import '../features/events/presentation/bloc/event_removal_bloc/event_removal_bloc.dart';
+import '../features/events/presentation/bloc/events_bloc/events_bloc.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -114,6 +117,11 @@ void _initEventDependencies() {
       () => RemoveEvent(
         eventRepository: getIt(),
       ),
+    )
+    ..registerFactory<UpdateEvent>(
+          () => UpdateEvent(
+        eventRepository: getIt(),
+      ),
     );
 }
 
@@ -132,7 +140,16 @@ void _initBlocDependencies() {
       () => EventBloc(
         createEvent: getIt(),
         getEvent: getIt(),
+      ),
+    )
+    ..registerLazySingleton<EventRemovalBloc>(
+      () => EventRemovalBloc(
         removeEvent: getIt(),
+      ),
+    )
+    ..registerLazySingleton<EventEditionBloc>(
+          () => EventEditionBloc(
+        updateEvent: getIt(),
       ),
     )
     ..registerLazySingleton<EventsBloc>(

@@ -36,11 +36,3 @@ class EventGet extends EventEvent {
     required this.eventId,
   });
 }
-
-class EventRemove extends EventEvent {
-  final String eventId;
-
-  EventRemove({
-    required this.eventId,
-  });
-}

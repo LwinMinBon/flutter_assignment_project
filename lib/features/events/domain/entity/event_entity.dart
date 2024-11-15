@@ -54,4 +54,40 @@ class EventEntity {
       posterPhoneNumber: model.posterPhoneNumber
     );
   }
+
+  EventEntity copyWith({
+    String? id,
+    DateTime? updatedAt,
+    String? userId,
+    String? name,
+    String? description,
+    String? imageUrl,
+    List<String>? topics,
+    String? location,
+    String? venueName,
+    List<String>? coordinates,
+    String? date,
+    String? time,
+    String? posterEmail,
+    String? posterUsername,
+    String? posterPhoneNumber,
+  }) {
+    return EventEntity(
+      id: id ?? this.id,
+      updatedAt: updatedAt ?? this.updatedAt,
+      userId: userId ?? this.userId,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      imageUrl: imageUrl ?? this.imageUrl,
+      topics: topics ?? this.topics,
+      location: location ?? this.location,
+      venueName: venueName ?? this.venueName,
+      coordinates: coordinates ?? this.coordinates,
+      date: date ?? this.date,
+      time: time ?? this.time,
+      posterEmail: posterEmail,
+      posterUsername: posterUsername,
+      posterPhoneNumber: posterPhoneNumber,
+    );
+  }
 }

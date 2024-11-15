@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/usecase/usecase.dart';
-import '../../domain/entity/event_entity.dart';
-import '../../domain/usecase/get_all_events.dart';
+import '../../../../../core/usecase/usecase.dart';
+import '../../../domain/entity/event_entity.dart';
+import '../../../domain/usecase/get_all_events.dart';
 
 part 'events_event.dart';
 part 'events_state.dart';

@@ -8,4 +8,5 @@ abstract interface class EventRemoteDataSource {
   Future<List<EventModel>> getAllEvents();
   Future<EventModel> getEvent(String id);
   Future<void> removeEvent(String id);
+  Future<void> updateEvent(EventModel eventModel);
 }

@@ -9,7 +9,7 @@ import '../../../../core/common/widgets/error_indicator.dart';
 import '../../../../core/common/widgets/loading_indicator.dart';
 import '../../../../core/theme/app_font_styles.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
-import '../bloc/events_bloc.dart';
+import '../bloc/events_bloc/events_bloc.dart';
 import '../widgets/event_card.dart';
 import '../widgets/options_dialog.dart';
 
